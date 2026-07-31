@@ -1,6 +1,6 @@
-import User from "../models/User";
+import User from "../models/User.js";
 import bcrypt from "bcryptjs";
-import { generateOTP } from "../utils/sendOTP.js";
+import otpGenerator from "otp-generator";
 import sendOTP from "../utils/sendOTP.js";
 import { v4 as uuidv4 } from "uuid";
 import jwt from "jsonwebtoken";
@@ -178,3 +178,52 @@ export const registerUser = async (req, res) => {
     //update user profile
     export async function updateUserProfile(req, res) {
       try {
+        const { name, email, phone, address, city, state, zip } = req.body;
+        const user = await User.findById(req.user.id);
+        if (!user) {
+          return res.status(404).json({ message: "User not found" });
+        }
+
+        if(email) {
+          const normalizedEmail = email.toLowerCase();
+          if (normalizedEmail !== user.email.toLowerCase()) {
+            if (await User.findOne({ email: normalizedEmail, _id: { $ne: user._id } })) {
+              return res.status(400).json({ message: "Email already in use" });
+            }
+            user.email = normalizedEmail;
+          }
+        }
+
+        if(phone) {
+          const cleanPhone = phone.toString().replace(/\D/g, '');
+          if (cleanPhone.length !== 10) {
+            return res.status(400).json({ message: "Invalid phone number" });
+          }
+          user.phone = cleanPhone;
+        }
+
+        if(name) user.name = name;
+        if(address) user.address = address;
+        if(city) user.city = city;
+        if(state) user.state = state;
+        if(zip) user.zip = zip;
+
+        await user.save();
+        res.status(200).json({ success: true, message: "Profile updated successfully", user });
+      } catch (error) {
+        console.error("Error updating user profile:", error);
+        res.status(500).json({ success: false, message: "Error updating profile" ,error: error.message});
+      }
+    }
+
+    //get all users (admin only)
+    export async function getAllUsers(req, res) {
+      try { 
+        const users = await User.find({userType: "user"}).select("-password");
+        res.status(200).json({ success: true, users });
+      } catch (error) {
+        console.error("Error fetching all users:", error);
+        res.status(500).json({ success: false, message: "Error fetching all users",error: error.message });
+      }
+    }
+

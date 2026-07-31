@@ -3,7 +3,7 @@ import { stringify } from "uuid";
 
 const userSchema = new mongoose.Schema({
   name: {
-    type: String, 
+    type: String,
     required: true,
   },
   email: {
@@ -15,22 +15,26 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-    role: { 
+  role: {
     type: String,
-    enum: ['user', 'admin'],
-    default: 'user'
-    },
-    phone : {
+    enum: ["user", "admin"],
+    default: "user",
+  },
+  phone: {
     type: String,
     required: true,
-    },
-    otp:string,
-    otpExpiry:Date,
-    isVerified:{
-    type: Boolean,
-    default: false
-    }
+  },
+  otp: {
+    type: String,
+  },
 
+  otpExpiry: {
+    type: Date,
+  },
+  isVerified: {
+    type: Boolean,
+    default: false,
+  },
 });
 
 export default mongoose.model("User", userSchema);
