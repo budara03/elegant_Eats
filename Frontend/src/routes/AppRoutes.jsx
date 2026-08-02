@@ -1,31 +1,16 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-
 import SignIn from "../auth/SignIn";
+import Home from "../pages/Home";
+import Categories from "../pages/Categories";
 
-
-export default function AppRoutes(){
-
-    return (
-
-        <BrowserRouter>
-
-            <Routes>
-
-                <Route 
-                    path="/"
-                    element={<SignIn />}
-                />
-
-
-                <Route 
-                    path="/signin"
-                    element={<SignIn />}
-                />
-
-            </Routes>
-
-        </BrowserRouter>
-
-    );
-
+export default function AppRoutes() {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/signin" element={<SignIn />} />
+        <Route path="/categories" element={<Categories />} />
+      </Routes>
+    </BrowserRouter>
+  );
 }
