@@ -6,37 +6,37 @@ const categories = [
     title: "Birthday Cakes",
     description: "Beautiful cakes designed for birthdays and celebrations",
     count: 45,
-    image: "https://images.unsplash.com/photo-1578985545062-69928b1d9587",
+    image: "https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=800&q=80",
   },
   {
     title: "Wedding Cakes",
     description: "Elegant wedding cakes made for your special day",
     count: 30,
-    image: "https://images.unsplash.com/photo-1519869325930-281384150729",
+    image: "https://images.unsplash.com/photo-1535254973040-607b474cb50d?auto=format&fit=crop&w=800&q=80",
   },
   {
     title: "Custom Cakes",
     description: "Create your own dream cake design",
     count: 60,
-    image: "https://images.unsplash.com/photo-1559628233-100c798642d4",
+    image: "https://images.unsplash.com/photo-1588195538326-c5b1e9f80a1b?auto=format&fit=crop&w=800&q=80",
   },
   {
     title: "Cupcakes",
     description: "Small delicious treats for every occasion",
     count: 25,
-    image: "https://images.unsplash.com/photo-1426869981800-95ebf51ce900",
+    image: "https://images.unsplash.com/photo-1576618148400-f54bed99fcfd?auto=format&fit=crop&w=800&q=80",
   },
   {
     title: "Cookies",
     description: "Fresh handmade cookies and desserts",
     count: 20,
-    image: "https://images.unsplash.com/photo-1558961363-fa8fdf82db35",
+    image: "https://images.unsplash.com/photo-1558961363-fa8fdf82db35?auto=format&fit=crop&w=800&q=80",
   },
   {
     title: "Party Items",
     description: "Balloons, candles, toppers and decorations",
     count: 50,
-    image: "https://images.unsplash.com/photo-1530103862676-de8c9debad1d",
+    image: "https://images.unsplash.com/photo-1530103862676-de8c9debad1d?auto=format&fit=crop&w=800&q=80",
   },
 ];
 

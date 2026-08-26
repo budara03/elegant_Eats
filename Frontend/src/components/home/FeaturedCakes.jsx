@@ -4,28 +4,28 @@ import { motion } from "framer-motion";
 const cakes = [
   {
     id: 1,
-    image: "https://images.unsplash.com/photo-1578985545062-69928b1d9587",
+    image: "https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=800&q=80",
     name: "Chocolate Dream Cake",
     price: 3500,
     rating: "4.9",
   },
   {
     id: 2,
-    image: "https://images.unsplash.com/photo-1551024506-0bccd828d307",
+    image: "https://images.unsplash.com/photo-1565958011703-44f9829ba187?auto=format&fit=crop&w=800&q=80",
     name: "Strawberry Cake",
     price: 4200,
     rating: "5.0",
   },
   {
     id: 3,
-    image: "https://images.unsplash.com/photo-1519869325930-281384150729",
+    image: "https://images.unsplash.com/photo-1535254973040-607b474cb50d?auto=format&fit=crop&w=800&q=80",
     name: "Wedding Cake",
     price: 8500,
     rating: "4.8",
   },
   {
     id: 4,
-    image: "https://images.unsplash.com/photo-1426869981800-95ebf51ce900",
+    image: "https://images.unsplash.com/photo-1576618148400-f54bed99fcfd?auto=format&fit=crop&w=800&q=80",
     name: "Cupcake Box",
     price: 2500,
     rating: "4.9",
