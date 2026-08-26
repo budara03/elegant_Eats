@@ -5,13 +5,13 @@ export default function AuthPage() {
   const [isSignUp, setIsSignUp] = useState(false);
 
   return (
-    <div className="min-h-screen bg-[#FBEFEF] flex items-center justify-center p-6">
+    <div className="min-h-screen bg-[#FDF4D2] flex items-center justify-center p-6">
       
       {/* Main Container */}
       <div className="w-full max-w-5xl bg-white rounded-3xl shadow-xl overflow-hidden flex flex-col md:flex-row">
 
         {/* Left Brand Section */}
-        <div className="md:w-1/2 bg-[#C5B3D3] p-10 flex flex-col justify-center items-center text-center">
+        <div className="md:w-1/2 bg-[#A290B7] p-10 flex flex-col justify-center items-center text-center">
 
           <div className="text-6xl mb-5">
             🎂
@@ -33,9 +33,9 @@ export default function AuthPage() {
 
 
         {/* Form Section */}
-        <div className="md:w-1/2 bg-[#FFE2E2] p-10">
+        <div className="md:w-1/2 bg-[#FDF4D2]/40 p-10">
 
-          <h2 className="text-3xl font-bold text-[#5A4055] mb-2">
+          <h2 className="text-3xl font-bold text-[#946D6D] mb-2">
             {isSignUp ? "Create Account 🎂" : "Welcome Back 🍰"}
           </h2>
 
@@ -47,7 +47,6 @@ export default function AuthPage() {
 
 
           <form className="space-y-4">
-
 
             {isSignUp && (
               <>
@@ -63,18 +62,15 @@ export default function AuthPage() {
               </>
             )}
 
-
             <Input
               placeholder="Email Address"
               type="email"
             />
 
-
             <Input
               placeholder="Password"
               type="password"
             />
-
 
             {isSignUp && (
               <Input
@@ -83,22 +79,20 @@ export default function AuthPage() {
               />
             )}
 
-
-
             {!isSignUp && (
               <div className="flex justify-between items-center text-sm">
 
-                <label className="flex gap-2 items-center">
+                <label className="flex gap-2 items-center text-gray-700">
                   <input 
                     type="checkbox"
-                    className="accent-[#C5B3D3]"
+                    className="accent-[#A290B7]"
                   />
                   Remember me
                 </label>
 
                 <a 
                   href="#"
-                  className="text-[#8A6FA8]"
+                  className="text-[#946D6D] hover:text-[#A290B7] font-medium transition"
                 >
                   Forgot Password?
                 </a>
@@ -106,27 +100,24 @@ export default function AuthPage() {
               </div>
             )}
 
-
-
             <button
               className="
               w-full
-              bg-[#F5CBCB]
-              hover:bg-[#C5B3D3]
-              text-[#5A4055]
+              bg-[#946D6D]
+              hover:bg-[#7e5b5b]
+              text-white
               font-semibold
               py-3
               rounded-full
               transition
               duration-300
+              shadow-md
               "
             >
               {isSignUp ? "Create Account" : "Sign In"}
             </button>
 
-
           </form>
-
 
 
           <div className="text-center mt-6 text-gray-700">
@@ -136,21 +127,21 @@ export default function AuthPage() {
               : "Don't have an account?"
             }
 
-
             <button
               onClick={() => setIsSignUp(!isSignUp)}
               className="
               ml-2
-              text-[#8A6FA8]
+              text-[#946D6D]
               font-semibold
+              hover:text-[#A290B7]
               hover:underline
+              transition
               "
             >
               {isSignUp ? "Sign In" : "Create Account"}
             </button>
 
           </div>
-
 
         </div>
 
