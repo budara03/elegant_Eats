@@ -14,6 +14,7 @@ const Navbar = () => {
 
   const navLinks = [
     { name: "Home", path: "/" },
+    { name: "Cakes", path: "/cakes" },
     { name: "Categories", path: "/categories" },
     { name: "Custom Cakes", path: "/custom-cake" },
     { name: "Party Items", path: "/party-items" },
@@ -49,9 +50,13 @@ const Navbar = () => {
           {/* Right Icons */}
           <div className="hidden lg:flex items-center gap-5">
 
-            <button className="text-xl text-[#946D6D] hover:text-[#A290B7] transition">
+            <Link
+              to="/cakes"
+              className="text-xl text-[#946D6D] hover:text-[#A290B7] transition flex items-center"
+              title="Search Cakes"
+            >
               <FiSearch />
-            </button>
+            </Link>
 
             <button className="relative text-xl text-[#946D6D] hover:text-[#A290B7] transition">
               <FiShoppingCart />
@@ -100,9 +105,13 @@ const Navbar = () => {
 
             <div className="flex justify-center gap-6 mt-5">
 
-              <button className="text-2xl text-[#946D6D] hover:text-[#A290B7] transition">
+              <Link
+                to="/cakes"
+                onClick={() => setIsOpen(false)}
+                className="text-2xl text-[#946D6D] hover:text-[#A290B7] transition"
+              >
                 <FiSearch />
-              </button>
+              </Link>
 
               <button className="text-2xl text-[#946D6D] hover:text-[#A290B7] transition">
                 <FiShoppingCart />
