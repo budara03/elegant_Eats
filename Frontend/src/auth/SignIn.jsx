@@ -18,7 +18,7 @@ export default function AuthPage() {
           </div>
 
           <h1 className="text-4xl font-bold text-white mb-4">
-            Sweet Crumbs
+            Elegant Eats
           </h1>
 
           <p className="text-white text-lg">
@@ -41,7 +41,7 @@ export default function AuthPage() {
 
           <p className="text-gray-600 mb-8">
             {isSignUp
-              ? "Join Sweet Crumbs and order your favourite cakes."
+              ? "Join Elegant Eats and order your favourite cakes."
               : "Login to continue your cake journey."}
           </p>
 
