@@ -37,7 +37,7 @@ export default function CustomCake() {
             transition={{ delay: 0.2 }}
             className="mt-3 text-sm sm:text-base text-gray-700 max-w-xl mx-auto leading-relaxed"
           >
-            Designed by you, made with love by <strong>Eat My Cake</strong>. Choose every detail and create a cake that's perfect for your special occasion.
+            Designed by you, made with love by <strong>Elegant Eats</strong>. Choose every detail and create a cake that's perfect for your special occasion.
           </motion.p>
 
           {/* Breadcrumb */}

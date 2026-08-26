@@ -1,4 +1,5 @@
 import React, { useState, useMemo } from "react";
+import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   FiArrowRight,
@@ -30,6 +31,8 @@ import PriceSummary from "./PriceSummary";
 import CustomCakeReview from "./CustomCakeReview";
 
 export default function CustomCakeBuilder() {
+  const navigate = useNavigate();
+
   // Default delivery date (2 days from today)
   const defaultDate = useMemo(() => {
     const d = new Date();
@@ -244,6 +247,32 @@ export default function CustomCakeBuilder() {
     setTimeout(() => {
       setAddedSuccess(false);
     }, 4000);
+  };
+
+  // Ask Owner About This Cake
+  const handleAskOwner = () => {
+    const decorList =
+      designMode === "photo"
+        ? "Custom design from photo reference"
+        : cake.decorations.map((d) => d.name).join(", ") || "None";
+
+    const summary = [
+      `🎂 Custom Cake Inquiry`,
+      `Shape: ${cake.shape?.name || "—"}`,
+      `Size: ${cake.size?.name || "—"}`,
+      `Flavor: ${cake.flavor?.name || "—"}`,
+      `Filling: ${cake.filling?.name || "—"}`,
+      `Color: ${cake.color?.name || "—"}`,
+      `Decorations: ${decorList}`,
+      cake.message ? `Cake Message: "${cake.message}"` : null,
+      cake.specialInstructions
+        ? `Special Instructions: ${cake.specialInstructions}`
+        : null,
+    ]
+      .filter(Boolean)
+      .join("\n");
+
+    navigate("/chat", { state: { prefillMessage: summary } });
   };
 
   return (
@@ -482,14 +511,23 @@ export default function CustomCakeBuilder() {
                   <FiArrowRight className="w-4 h-4" />
                 </button>
               ) : (
-                <button
-                  type="button"
-                  onClick={handleAddToCart}
-                  className="px-7 py-3.5 rounded-2xl bg-[#CF7D65] hover:bg-[#6B6D43] text-white font-bold text-xs sm:text-sm shadow-md transition flex items-center gap-2 cursor-pointer ml-auto"
-                >
-                  <FiCheckCircle className="w-4 h-4" />
-                  Confirm & Add to Cart
-                </button>
+                <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 ml-auto">
+                  <button
+                    type="button"
+                    onClick={handleAskOwner}
+                    className="px-5 py-3 rounded-2xl border-2 border-[#6B6D43] text-[#6B6D43] font-bold text-xs sm:text-sm hover:bg-[#6B6D43]/10 transition flex items-center justify-center gap-2 cursor-pointer"
+                  >
+                    💬 Ask Owner About This Cake
+                  </button>
+                  <button
+                    type="button"
+                    onClick={handleAddToCart}
+                    className="px-7 py-3.5 rounded-2xl bg-[#CF7D65] hover:bg-[#6B6D43] text-white font-bold text-xs sm:text-sm shadow-md transition flex items-center gap-2 cursor-pointer"
+                  >
+                    <FiCheckCircle className="w-4 h-4" />
+                    Confirm &amp; Add to Cart
+                  </button>
+                </div>
               )}
             </div>
           </div>

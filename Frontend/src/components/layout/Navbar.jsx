@@ -7,6 +7,7 @@ import {
   FiSearch,
   FiShoppingCart,
   FiUser,
+  FiMessageCircle,
 } from "react-icons/fi";
 
 const Navbar = () => {
@@ -17,6 +18,7 @@ const Navbar = () => {
     { name: "Cakes", path: "/cakes" },
     { name: "Categories", path: "/categories" },
     { name: "Custom Cakes", path: "/custom-cake" },
+    { name: "Chat", path: "/chat" },
     { name: "Party Items", path: "/party-items" },
     { name: "About", path: "/about" },
     { name: "Contact", path: "/contact" },
