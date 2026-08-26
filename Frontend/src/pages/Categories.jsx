@@ -64,6 +64,7 @@ const allCategoriesData = [
     group: "Other Cakes",
     description: "Classic rich, fluffy, and golden traditional butter sponge cakes",
     count: 22,
+    image: "https://images.unsplash.com/photo-1541781774459-bb2af2f05b55?auto=format&fit=crop&w=800&q=80",
     image: "https://images.unsplash.com/photo-1579372786545-d24232daf58c?auto=format&fit=crop&w=800&q=80",
   },
   {
