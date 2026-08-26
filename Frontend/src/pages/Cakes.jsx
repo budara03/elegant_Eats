@@ -10,11 +10,13 @@ import {
   FiStar,
   FiPackage,
   FiRefreshCw,
+  FiEye,
 } from "react-icons/fi";
 import Navbar from "../components/layout/Navbar";
 import CakeFilter from "../components/cakes/CakeFilter";
 import FilterDrawer from "../components/cakes/FilterDrawer";
 import ActiveFilterChips from "../components/cakes/ActiveFilterChips";
+import ProductDetailModal from "../components/cakes/ProductDetailModal";
 
 const defaultCakesData = [
   // Birthday Cakes
@@ -325,6 +327,9 @@ export default function Cakes() {
   const [selectedOccasions, setSelectedOccasions] = useState([]);
   const [selectedAvailability, setSelectedAvailability] = useState([]);
   const [selectedRating, setSelectedRating] = useState(0);
+
+  // Selected product for popup modal
+  const [selectedProduct, setSelectedProduct] = useState(null);
 
   // Mobile Drawer State
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
@@ -711,7 +716,7 @@ export default function Cakes() {
               />
             </div>
 
-            {/* Cakes Product Grid with strictly uniform card dimensions */}
+            {/* Cakes Product Grid with strictly uniform card dimensions & popup triggers */}
             <motion.div
               layout
               className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6 items-stretch"
@@ -725,7 +730,8 @@ export default function Cakes() {
                     animate={{ opacity: 1, scale: 1 }}
                     exit={{ opacity: 0, scale: 0.95 }}
                     transition={{ duration: 0.25 }}
-                    className="h-full flex flex-col w-full bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-[#946D6D]/15 justify-between group"
+                    className="h-full flex flex-col w-full bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-[#946D6D]/15 justify-between group cursor-pointer"
+                    onClick={() => setSelectedProduct(cake)}
                   >
                     {/* Cake Image Container - Fixed height */}
                     <div className="relative w-full h-52 overflow-hidden bg-[#FDF4D2]/40">
@@ -735,22 +741,33 @@ export default function Cakes() {
                         className="w-full h-full object-cover group-hover:scale-108 transition duration-500"
                       />
 
+                      {/* Quick View Hover Overlay */}
+                      <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center">
+                        <span className="bg-white/95 text-[#946D6D] px-4 py-2 rounded-full font-bold text-xs shadow-lg flex items-center gap-1.5 transform translate-y-2 group-hover:translate-y-0 transition duration-300">
+                          <FiEye className="w-3.5 h-3.5" />
+                          View Details
+                        </span>
+                      </div>
+
                       {/* Favorite Button */}
                       <button
                         type="button"
-                        className="absolute right-3.5 top-3.5 bg-white/90 backdrop-blur-xs p-2.5 rounded-full shadow-md text-[#946D6D] hover:text-[#A290B7] hover:bg-white transition"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                        }}
+                        className="absolute right-3.5 top-3.5 bg-white/90 backdrop-blur-xs p-2.5 rounded-full shadow-md text-[#946D6D] hover:text-[#A290B7] hover:bg-white transition z-10"
                       >
                         <FiHeart className="w-4 h-4" />
                       </button>
 
                       {/* Category Tag */}
-                      <span className="absolute left-3.5 top-3.5 bg-white/90 backdrop-blur-xs px-3 py-1 rounded-full text-[11px] font-bold text-[#946D6D] shadow-xs">
+                      <span className="absolute left-3.5 top-3.5 bg-white/90 backdrop-blur-xs px-3 py-1 rounded-full text-[11px] font-bold text-[#946D6D] shadow-xs z-10">
                         {cake.category}
                       </span>
 
                       {/* Availability Tag */}
                       {cake.availability !== "In Stock" && (
-                        <span className="absolute left-3.5 bottom-3.5 bg-[#946D6D]/90 backdrop-blur-xs px-2.5 py-1 rounded-full text-[10px] font-bold text-white shadow-xs flex items-center gap-1">
+                        <span className="absolute left-3.5 bottom-3.5 bg-[#946D6D]/90 backdrop-blur-xs px-2.5 py-1 rounded-full text-[10px] font-bold text-white shadow-xs flex items-center gap-1 z-10">
                           <FiPackage className="w-3 h-3" />
                           {cake.availability}
                         </span>
@@ -815,9 +832,14 @@ export default function Cakes() {
 
                         <button
                           type="button"
-                          className="bg-[#946D6D] hover:bg-[#7e5b5b] text-white p-3 rounded-full shadow-md transition transform active:scale-95 flex items-center justify-center"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            setSelectedProduct(cake);
+                          }}
+                          className="bg-[#946D6D] hover:bg-[#7e5b5b] text-white px-3.5 py-2 rounded-full shadow-md transition transform active:scale-95 flex items-center gap-1.5 text-xs font-bold"
                         >
-                          <FiShoppingCart className="w-4 h-4" />
+                          <FiShoppingCart className="w-3.5 h-3.5" />
+                          <span>Order</span>
                         </button>
                       </div>
                     </div>
@@ -852,7 +874,14 @@ export default function Cakes() {
         </div>
       </main>
 
-      {/* Mobile Slide-Out Drawer */}
+      {/* Product Details Popup Modal */}
+      <ProductDetailModal
+        isOpen={Boolean(selectedProduct)}
+        product={selectedProduct}
+        onClose={() => setSelectedProduct(null)}
+      />
+
+      {/* Mobile Slide-Out Filter Drawer */}
       <FilterDrawer
         isOpen={isDrawerOpen}
         onClose={() => setIsDrawerOpen(false)}
