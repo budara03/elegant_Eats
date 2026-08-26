@@ -1,3 +1,4 @@
+import React from "react";
 import { motion } from "framer-motion";
 import CategoryCard from "./CategoryCard";
 
@@ -59,12 +60,14 @@ const Categories = () => {
         </div>
       </section>
 
-      {/* Category Cards */}
+      {/* Category Cards Grid */}
       <section className="bg-white py-20">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-10">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch">
             {categories.map((category, index) => (
-              <CategoryCard key={index} {...category} />
+              <div key={index} className="h-full flex flex-col w-full">
+                <CategoryCard {...category} />
+              </div>
             ))}
           </div>
         </div>

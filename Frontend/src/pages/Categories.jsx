@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Navbar from "../components/layout/Navbar";
 import CategoryFilter from "../components/categories/CategoryFilter";
@@ -64,7 +64,6 @@ const allCategoriesData = [
     group: "Other Cakes",
     description: "Classic rich, fluffy, and golden traditional butter sponge cakes",
     count: 22,
-    image: "https://images.unsplash.com/photo-1541781774459-bb2af2f05b55?auto=format&fit=crop&w=800&q=80",
     image: "https://images.unsplash.com/photo-1579372786545-d24232daf58c?auto=format&fit=crop&w=800&q=80",
   },
   {
@@ -155,12 +154,12 @@ const Categories = () => {
         onSelectCategory={setSelectedCategory}
       />
 
-      {/* Category Cards Grid */}
+      {/* Category Cards Grid with equal heights */}
       <section className="py-12">
         <div className="max-w-7xl mx-auto px-6">
           <motion.div
             layout
-            className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8"
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 items-stretch"
           >
             <AnimatePresence>
               {filteredCategories.map((category) => (
@@ -171,6 +170,7 @@ const Categories = () => {
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.9 }}
                   transition={{ duration: 0.3 }}
+                  className="h-full flex flex-col w-full"
                 >
                   <CategoryCard {...category} />
                 </motion.div>
